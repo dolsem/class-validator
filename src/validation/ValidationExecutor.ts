@@ -106,6 +106,8 @@ export class ValidationExecutor {
             this.nestedValidations(value, nestedValidationMetadatas, validationError.children);
 
             this.mapContexts(object, value, metadatas, validationError);
+            this.mapContexts(object, value, definedMetadatas, validationError);
+            this.mapContexts(object, value, customValidationMetadatas, validationError);
         });
     }
 
