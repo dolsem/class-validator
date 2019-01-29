@@ -241,7 +241,12 @@ var ValidationExecutor = /** @class */ (function () {
         return metadatas
             .forEach(function (metadata) {
             if (metadata.context) {
-                var type = _this.getConstraintType(metadata);
+                var customConstraint = void 0;
+                if (metadata.type === ValidationTypes_1.ValidationTypes.CUSTOM_VALIDATION) {
+                    var customConstraints = _this.metadataStorage.getTargetValidatorConstraints(metadata.constraintCls);
+                    customConstraint = customConstraints[0];
+                }
+                var type = _this.getConstraintType(metadata, customConstraint);
                 if (error.constraints[type]) {
                     if (!error.contexts) {
                         error.contexts = {};
